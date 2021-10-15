@@ -3,6 +3,7 @@ using ProjectMarta.Models;
 using System;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.IO;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
@@ -67,6 +68,9 @@ namespace ProjectMarta.ViewModels
             }
             var result = await synthesizer.SpeakTextAsync(item.Text);
             var stream = AudioDataStream.FromResult(result);
+
+            var player = Plugin.SimpleAudioPlayer.CrossSimpleAudioPlayer.Current;
+            player.Load(new MemoryStream(result.AudioData));
         }
     }
 }
