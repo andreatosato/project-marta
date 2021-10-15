@@ -12,6 +12,7 @@ namespace ProjectMarta.ViewModels
     {
         public IDataStore<Item> DataStore => DependencyService.Get<IDataStore<Item>>();
         public IDataStore<GalleryItem> GalleryItemDataStore => DependencyService.Get<IDataStore<GalleryItem>>();
+        public IMicrophoneService MicrophoneService = DependencyService.Resolve<IMicrophoneService>();
 
         bool isBusy = false;
         public bool IsBusy
@@ -32,7 +33,9 @@ namespace ProjectMarta.ViewModels
             Action onChanged = null)
         {
             if (EqualityComparer<T>.Default.Equals(backingStore, value))
+            {
                 return false;
+            }
 
             backingStore = value;
             onChanged?.Invoke();
@@ -46,7 +49,9 @@ namespace ProjectMarta.ViewModels
         {
             var changed = PropertyChanged;
             if (changed == null)
+            {
                 return;
+            }
 
             changed.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }

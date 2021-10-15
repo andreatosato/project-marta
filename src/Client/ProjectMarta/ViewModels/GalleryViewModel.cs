@@ -1,16 +1,16 @@
-﻿using ProjectMarta.Models;
+﻿using Microsoft.CognitiveServices.Speech;
+using ProjectMarta.Models;
 using System;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Threading.Tasks;
-using System.Windows.Input;
-using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace ProjectMarta.ViewModels
 {
     public class GalleryViewModel : BaseViewModel
     {
+        private SpeechSynthesizer synthesizer;
         public ObservableCollection<GalleryItem> GalleryItems { get; }
 
         public Command<Item> ItemTapped { get; }
@@ -54,10 +54,19 @@ namespace ProjectMarta.ViewModels
         async void OnItemSelected(Item item)
         {
             if (item == null)
+            {
                 return;
+            }
 
-            //TODO: Speach-To-Text
-            
+            //TODO: Speech-To-Text
+            // initialize speech recognizer 
+            if (synthesizer == null)
+            {
+                var config = SpeechConfig.FromSubscription(Constants.CognitiveServicesApiKey, Constants.CognitiveServicesRegion);
+                synthesizer = new SpeechSynthesizer(config);
+            }
+            var result = await synthesizer.SpeakTextAsync(item.Text);
+            var stream = AudioDataStream.FromResult(result);
         }
     }
 }

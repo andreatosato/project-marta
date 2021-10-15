@@ -55,5 +55,10 @@ namespace ProjectMarta.Services
         {
             return await Task.FromResult(galleryItems);
         }
+
+        public async Task<GalleryItem> SearchCommandAsync(string command)
+        {
+            return await Task.FromResult(galleryItems.FirstOrDefault(t => t.Name.IndexOf(command, StringComparison.InvariantCultureIgnoreCase) >= 0));
+        }
     }
 }

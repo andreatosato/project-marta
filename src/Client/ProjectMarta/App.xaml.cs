@@ -1,8 +1,6 @@
-﻿using ProjectMarta.Services;
-using ProjectMarta.Views;
-using System;
+﻿using ProjectMarta.Models;
+using ProjectMarta.Services;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace ProjectMarta
 {
@@ -13,7 +11,8 @@ namespace ProjectMarta
         {
             InitializeComponent();
 
-            DependencyService.Register<GalleryDataStore>();
+            DependencyService.Register<IDataStore<GalleryItem>, GalleryDataStore>();
+            DependencyService.Register<IMicrophoneService, MicrophoneService>();
             MainPage = new AppShell();
         }
 
