@@ -14,11 +14,19 @@ namespace ProjectMarta.Services
         {
             galleryItems = new List<GalleryItem>()
             {
-                new GalleryItem { Id= "1", Name = "Porta", Details="Porta interna", TextToSpeach="Una porta", ImageUrl="https://t4.ftcdn.net/jpg/00/82/36/09/240_F_82360918_lpY2q2DkAujjNvR9MGnDJEwwUIuHXFW9.jpg" },
-                new GalleryItem { Id= "2", Name = "Tavolo", Details="Tavolo da pranzo", TextToSpeach="Un tavolo", ImageUrl="https://t4.ftcdn.net/jpg/02/56/22/93/240_F_256229326_jQA0y6xQrqolau1er4Ii620KBbs6Uwl4.jpg" },
-                new GalleryItem { Id= "3", Name = "Bicchiere d'acqua", Details="Bicchiere d'acqua", TextToSpeach="Un bicchiere d'acqua", ImageUrl="https://t4.ftcdn.net/jpg/01/74/18/97/240_F_174189786_bnzrHDTjS09k7a6kSnnYf5xfTcsLUuwv.jpg" },
-                new GalleryItem { Id= "4", Name = "", Details="", TextToSpeach="", ImageUrl="" },
-                new GalleryItem { Id= "5", Name = "", Details="", TextToSpeach="", ImageUrl="" },
+                new GalleryItem { Id= "1", Name = "Accendere la luce", Details="Accendere la luce", TextToSpeach="Accendi la luce", ImageUrl="https://projectmarta.blob.core.windows.net/images/Commands/turnonthelight.gif" },
+                new GalleryItem { Id= "2", Name = "Spengere la luce", Details="Spengere la luce", TextToSpeach="Spengi la luce", ImageUrl="https://projectmarta.blob.core.windows.net/images/Commands/turnoffthelight.jpg" },
+                new GalleryItem { Id= "3", Name = "Mangiare", Details="Vorrei mangiare", TextToSpeach="Vorrei mangiare", ImageUrl="https://projectmarta.blob.core.windows.net/images/Commands/mangiare.jpg" },
+                new GalleryItem { Id= "4", Name = "Uscire fuori", Details="Uscire fuori", TextToSpeach="Vorrei uscire fuori", ImageUrl="https://projectmarta.blob.core.windows.net/images/Commands/letsgoout.jpg" },
+                new GalleryItem { Id= "5", Name = "Alzarsi", Details="Alzarsi", TextToSpeach="Vorrei alzarmi", ImageUrl="https://projectmarta.blob.core.windows.net/images/Commands/getup.gif" },
+                new GalleryItem { Id= "6", Name = "Alzare il volume", Details="Alzare il volume", TextToSpeach="Alzare il volume", ImageUrl="https://projectmarta.blob.core.windows.net/images/Commands/alzare%20il%20volume.jpg" },
+                new GalleryItem { Id= "7", Name = "Abbassare il volume", Details="Abbassare il volume", TextToSpeach="Abbassare il volume", ImageUrl="https://projectmarta.blob.core.windows.net/images/Commands/abbassare%20il%20volume.png" },
+                new GalleryItem { Id= "8", Name = "50", Details="Cinquanta", TextToSpeach="50", ImageUrl="https://projectmarta.blob.core.windows.net/images/Gallery/cinquanta.jpg" },
+                new GalleryItem { Id= "9", Name = "Luna", Details="Luna", TextToSpeach="Luna", ImageUrl="https://projectmarta.blob.core.windows.net/images/Gallery/luna.jpg" },
+                new GalleryItem { Id= "10", Name = "Gatto", Details="Gatto", TextToSpeach="Gatto", ImageUrl="https://projectmarta.blob.core.windows.net/images/Gallery/gatti.jpg" },
+                new GalleryItem { Id= "11", Name = "Latte", Details="Latte", TextToSpeach="Latte", ImageUrl="https://projectmarta.blob.core.windows.net/images/Gallery/latte.jpg" },
+                new GalleryItem { Id= "12", Name = "Rock", Details="Rock", TextToSpeach="Rock", ImageUrl="https://projectmarta.blob.core.windows.net/images/Gallery/rock.jpg" },
+                new GalleryItem { Id= "13", Name = "Tetti", Details="Tetti", TextToSpeach="Tetti", ImageUrl="https://projectmarta.blob.core.windows.net/images/Gallery/tetti.jpg" },
             };
         }
 
