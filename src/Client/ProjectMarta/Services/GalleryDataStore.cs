@@ -15,7 +15,7 @@ namespace ProjectMarta.Services
             galleryItems = new List<GalleryItem>()
             {
                 new GalleryItem { Id= "1", Name = "Accendere la luce", Details="Accendere la luce", TextToSpeach="Accendi la luce", ImageUrl="https://projectmarta.blob.core.windows.net/images/Commands/turnonthelight.gif" },
-                new GalleryItem { Id= "2", Name = "Spengere la luce", Details="Spengere la luce", TextToSpeach="Spengi la luce", ImageUrl="https://projectmarta.blob.core.windows.net/images/Commands/turnoffthelight.jpg" },
+                new GalleryItem { Id= "2", Name = "Spegnere la luce", Details="Spegnere la luce", TextToSpeach="Spegni la luce", ImageUrl="https://projectmarta.blob.core.windows.net/images/Commands/turnoffthelight.jpg" },
                 new GalleryItem { Id= "3", Name = "Mangiare", Details="Vorrei mangiare", TextToSpeach="Vorrei mangiare", ImageUrl="https://projectmarta.blob.core.windows.net/images/Commands/mangiare.jpg" },
                 new GalleryItem { Id= "4", Name = "Uscire fuori", Details="Uscire fuori", TextToSpeach="Vorrei uscire fuori", ImageUrl="https://projectmarta.blob.core.windows.net/images/Commands/letsgoout.jpg" },
                 new GalleryItem { Id= "5", Name = "Alzarsi", Details="Alzarsi", TextToSpeach="Vorrei alzarmi", ImageUrl="https://projectmarta.blob.core.windows.net/images/Commands/getup.gif" },
