@@ -11,16 +11,12 @@
 
     <ContentPage.Content>
         <StackLayout>
-            <StackLayout>
+            <StackLayout Margin="20">
                 <Frame>
                     <ScrollView x:Name="scroll">
-                        <Label Text="{Binding TranscriptText}" />
+                        <Label Text="{Binding TranscriptText}" TextColor="Black"/>
                     </ScrollView>
                 </Frame>
-                <StackLayout IsVisible="{Binding CommandFound}">
-                    <Image Source="{Binding ImageUrl}" />
-                </StackLayout>
-
                 <!--
                 <ActivityIndicator IsRunning="{Binding LoadingValue}" IsVisible="{Binding LoadingValue}" />
                 -->
@@ -28,6 +24,19 @@
                     BackgroundColor="{Binding RecordingButtonColor}"
                     Command="{Binding RecordingCommand}"
                     Text="{Binding RecordingButtonText}" />
+                <StackLayout IsVisible="{Binding CommandFound}">
+                    <Image Source="{Binding ImageUrl}" />
+                </StackLayout>
+                <Label TextColor="Black">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <FormattedString.Spans>
+                                <Span Text="Ho capito: "/>
+                                <Span Text="{Binding RecognizedText}"/>
+                            </FormattedString.Spans>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>

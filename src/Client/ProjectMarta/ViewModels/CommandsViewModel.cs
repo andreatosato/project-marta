@@ -1,4 +1,5 @@
-﻿using ProjectMarta.Models;
+﻿using Microsoft.CognitiveServices.Speech;
+using ProjectMarta.Models;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -7,7 +8,9 @@ namespace ProjectMarta.ViewModels
 {
     public class CommandsViewModel : BaseViewModel
     {
+        #region Variables
         private bool isTranscribing = false;
+        private SpeechRecognizer SpeachRecognizer;
 
         public ICommand RecordingCommand { get; set; }
 
@@ -45,6 +48,12 @@ namespace ProjectMarta.ViewModels
             get => transcriptText;
             set => SetProperty(ref transcriptText, value);
         }
+        private string recognizedText;
+        public string RecognizedText
+        {
+            get => recognizedText;
+            set => SetProperty(ref recognizedText, value);
+        }
 
         private string imageUrl;
         public string ImageUrl
@@ -52,6 +61,7 @@ namespace ProjectMarta.ViewModels
             get => imageUrl;
             set => SetProperty(ref imageUrl, value);
         }
+        #endregion
 
         public CommandsViewModel()
         {
@@ -60,6 +70,24 @@ namespace ProjectMarta.ViewModels
             RecordingButtonText = "Premi e parla ;-)";
             RecordingButtonColor = Color.Blue;
             TranscriptText = "Dimmi qualcosa!";
+
+            SpeachRecognizer = SpeechService.GetRecognizer();
+            SpeachRecognizer.Recognized += async (obj, args) =>
+            {
+                var textExtracted = args.Result.Text.Replace(".", "");
+                if (string.IsNullOrEmpty(textExtracted))
+                {
+                    return;
+                }
+                RecognizedText = textExtracted;
+                var findElement = await GalleryItemDataStore.SearchCommandAsync(textExtracted);
+                if (findElement == null)
+                {
+                    return;
+                }
+                UpdateImage(findElement);
+                UpdateTranscription(textExtracted);
+            };
         }
 
         private async Task StartRecordingAsync()
@@ -76,44 +104,29 @@ namespace ProjectMarta.ViewModels
             CommandFound = false;
             RecordingButtonColor = Color.Green;
             RecordingButtonText = "Ora puoi parlare!";
-            TranscriptText = string.Empty;
             // initialize speech recognizer 
-            var recognizer = SpeechService.GetRecognizer();
-            recognizer.Recognized += async (obj, args) =>
-            {
-                var textExtracted = args.Result.Text.Replace(".", "");
-                if (string.IsNullOrEmpty(textExtracted))
-                {
-                    return;
-                }
 
-                var findElement = await GalleryItemDataStore.SearchCommandAsync(textExtracted);
-                if (findElement == null)
-                {
-                    return;
-                }
-                UpdateImage(findElement);
-                UpdateTranscription(textExtracted);
-            };
             if (!isTranscribing)
             {
-                await recognizer.StartContinuousRecognitionAsync();
+                await SpeachRecognizer.StartContinuousRecognitionAsync();
                 Device.BeginInvokeOnMainThread(() =>
                 {
                     RecordingButtonColor = Color.Red;
                     RecordingButtonText = "Stop";
                     LoadingValue = true;
+                    CommandFound = false;
+                    TranscriptText = string.Empty;
+                    RecognizedText = string.Empty;
                 });
             }
             else
             {
-                await recognizer.StopContinuousRecognitionAsync();
+                await SpeachRecognizer.StopContinuousRecognitionAsync();
                 Device.BeginInvokeOnMainThread(() =>
                 {
                     RecordingButtonColor = Color.Green;
                     RecordingButtonText = "Start";
                     LoadingValue = false;
-                    CommandFound = false;
                 });
             }
 

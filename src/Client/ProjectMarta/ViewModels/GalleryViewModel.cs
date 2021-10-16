@@ -12,8 +12,8 @@ namespace ProjectMarta.ViewModels
     public class GalleryViewModel : BaseViewModel
     {
         public ObservableCollection<GalleryItem> GalleryItems { get; }
-
         public Command<GalleryItem> ItemTapped { get; }
+        private bool IsPlaying = false;
 
         public GalleryViewModel()
         {
@@ -53,12 +53,13 @@ namespace ProjectMarta.ViewModels
 
         async void OnItemSelected(GalleryItem item)
         {
-            if (item == null)
+            if (item == null || IsPlaying)
             {
                 return;
             }
-
+            IsPlaying = true;
             await SpeechService.SpeechAsync(item.TextToSpeach);
+            IsPlaying = false;
         }
     }
 }

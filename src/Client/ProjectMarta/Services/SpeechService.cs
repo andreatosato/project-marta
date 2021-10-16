@@ -1,4 +1,6 @@
 ﻿using Microsoft.CognitiveServices.Speech;
+using Microsoft.CognitiveServices.Speech.Audio;
+using System;
 using System.IO;
 using System.Threading.Tasks;
 
@@ -12,14 +14,12 @@ namespace ProjectMarta.Services
 
         public SpeechService()
         {
-            var config = SpeechConfig.FromSubscription(Constants.CognitiveServicesApiKey, Constants.CognitiveServicesRegion);
-            //var sourceLanguageConfig = SourceLanguageConfig.FromLanguage("it-IT");
-            var sourceLanguageConfig = SourceLanguageConfig.FromLanguage("en-GB");
-            Synthesizer = new SpeechSynthesizer(config);
-            //Synthesizer = new SpeechSynthesizer(config,
-            //    AutoDetectSourceLanguageConfig.FromSourceLanguageConfigs(new[] { sourceLanguageConfig }),
-            //    AudioConfig.FromDefaultSpeakerOutput());
-            Recognizer = new SpeechRecognizer(config, sourceLanguageConfig);
+                var config = SpeechConfig.FromSubscription(Constants.CognitiveServicesApiKey, Constants.CognitiveServicesRegion);
+
+                var sourceLanguageConfig = SourceLanguageConfig.FromLanguage("it-IT"); //("en-US");
+
+                Synthesizer = new SpeechSynthesizer(config);
+                Recognizer = new SpeechRecognizer(config, sourceLanguageConfig);
         }
 
         public async Task SpeechAsync(string text)
@@ -28,9 +28,6 @@ namespace ProjectMarta.Services
             AudioPlayer.Load(new MemoryStream(result.AudioData));
         }
 
-        public SpeechRecognizer GetRecognizer()
-        {
-            return Recognizer;
-        }
+        public SpeechRecognizer GetRecognizer() => Recognizer;
     }
 }
