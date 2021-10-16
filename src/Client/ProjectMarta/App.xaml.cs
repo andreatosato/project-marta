@@ -13,6 +13,7 @@ namespace ProjectMarta
 
             DependencyService.Register<IDataStore<GalleryItem>, GalleryDataStore>();
             DependencyService.Register<IMicrophoneService, MicrophoneService>();
+            DependencyService.Register<ISpeechService, SpeechService>();
             MainPage = new AppShell();
         }
 

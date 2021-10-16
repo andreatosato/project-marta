@@ -1,4 +1,4 @@
-﻿using Microsoft.CognitiveServices.Speech;
+﻿
 using ProjectMarta.Models;
 using System;
 using System.Collections.ObjectModel;
@@ -11,17 +11,16 @@ namespace ProjectMarta.ViewModels
 {
     public class GalleryViewModel : BaseViewModel
     {
-        private SpeechSynthesizer synthesizer;
         public ObservableCollection<GalleryItem> GalleryItems { get; }
 
-        public Command<Item> ItemTapped { get; }
+        public Command<GalleryItem> ItemTapped { get; }
 
         public GalleryViewModel()
         {
             Title = "Gallery";
             GalleryItems = new ObservableCollection<GalleryItem>();
 
-            ItemTapped = new Command<Item>(OnItemSelected);
+            ItemTapped = new Command<GalleryItem>(OnItemSelected);
         }
 
         public async Task OnAppearing()
@@ -52,25 +51,14 @@ namespace ProjectMarta.ViewModels
             }
         }
 
-        async void OnItemSelected(Item item)
+        async void OnItemSelected(GalleryItem item)
         {
             if (item == null)
             {
                 return;
             }
 
-            //TODO: Speech-To-Text
-            // initialize speech recognizer 
-            if (synthesizer == null)
-            {
-                var config = SpeechConfig.FromSubscription(Constants.CognitiveServicesApiKey, Constants.CognitiveServicesRegion);
-                synthesizer = new SpeechSynthesizer(config);
-            }
-            var result = await synthesizer.SpeakTextAsync(item.Text);
-            var stream = AudioDataStream.FromResult(result);
-
-            var player = Plugin.SimpleAudioPlayer.CrossSimpleAudioPlayer.Current;
-            player.Load(new MemoryStream(result.AudioData));
+            await SpeechService.SpeechAsync(item.TextToSpeach);
         }
     }
 }
