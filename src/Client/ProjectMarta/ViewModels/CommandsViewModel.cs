@@ -21,6 +21,9 @@ namespace ProjectMarta.ViewModels
         {
             Title = "Commands";
             RecordingCommand = new Command(async () => await StartRecordingAsync());
+            RecordingButtonText = "Premi e parla ;-)";
+            RecordingButtonColor = Color.Green;
+            TranscriptText = "Dimmi qualcosa!";
         }
 
         private async Task StartRecordingAsync()
@@ -34,6 +37,7 @@ namespace ProjectMarta.ViewModels
                 return;
             }
 
+            TranscriptText = string.Empty;
             // initialize speech recognizer 
             if (recognizer == null)
             {
