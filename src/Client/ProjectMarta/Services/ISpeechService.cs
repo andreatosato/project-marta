@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Microsoft.CognitiveServices.Speech;
 using System.Threading.Tasks;
 
 namespace ProjectMarta.Services
@@ -8,5 +6,6 @@ namespace ProjectMarta.Services
     public interface ISpeechService
     {
         Task SpeechAsync(string text);
+        SpeechRecognizer GetRecognizer();
     }
 }

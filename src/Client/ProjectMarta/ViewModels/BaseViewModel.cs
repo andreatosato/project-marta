@@ -1,4 +1,5 @@
-﻿using ProjectMarta.Models;
+﻿using Microsoft.Toolkit.Mvvm.ComponentModel;
+using ProjectMarta.Models;
 using ProjectMarta.Services;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using Xamarin.Forms;
 
 namespace ProjectMarta.ViewModels
 {
-    public class BaseViewModel : INotifyPropertyChanged
+    public class BaseViewModel : ObservableObject, INotifyPropertyChanged
     {
         public IDataStore<GalleryItem> GalleryItemDataStore => DependencyService.Get<IDataStore<GalleryItem>>();
         public IMicrophoneService MicrophoneService = DependencyService.Resolve<IMicrophoneService>();

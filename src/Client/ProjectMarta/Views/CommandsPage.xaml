@@ -17,7 +17,11 @@
                         <Label Text="{Binding TranscriptText}" />
                     </ScrollView>
                 </Frame>
-                <ActivityIndicator IsRunning="{Binding LoadingValue}" />
+                <StackLayout IsVisible="{Binding CommandFound}">
+                    <Image Source="{Binding ImageUrl}" />
+                </StackLayout>
+
+                <ActivityIndicator IsRunning="{Binding LoadingValue}" IsVisible="{Binding LoadingValue}" />
                 <Button
                     BackgroundColor="{Binding RecordingButtonColor}"
                     Command="{Binding RecordingCommand}"

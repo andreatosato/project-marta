@@ -12,10 +12,10 @@
 
     <ContentPage.Content>
         <StackLayout Margin="20">
-            <CarouselView 
-                IndicatorView="indicatorView" 
-                ItemsSource="{Binding GalleryItems}"
-                InputTransparent="True">
+            <CarouselView
+                IndicatorView="indicatorView"
+                InputTransparent="True"
+                ItemsSource="{Binding GalleryItems}">
                 <CarouselView.ItemTemplate>
                     <DataTemplate>
                         <StackLayout>
@@ -40,10 +40,9 @@
                                         Aspect="AspectFit"
                                         HeightRequest="275"
                                         HorizontalOptions="Center"
+                                        InputTransparent="True"
                                         Source="{Binding ImageUrl}"
-                                        WidthRequest="275"
-                                        InputTransparent="True">
-                                    </Image>
+                                        WidthRequest="275" />
                                     <Label
                                         FontAttributes="Italic"
                                         FontSize="Large"
@@ -53,12 +52,12 @@
                                         Text="{Binding Details}"
                                         TextColor="DarkGray" />
                                     <StackLayout.GestureRecognizers>
-                                        <TapGestureRecognizer 
-                                                Command="{Binding Source={RelativeSource AncestorType={x:Type vm:GalleryViewModel}}, Path=ItemTapped}"
-                                                CommandParameter="{Binding .}"
-                                                NumberOfTapsRequired="1" />
+                                        <TapGestureRecognizer
+                                            Command="{Binding Source={RelativeSource AncestorType={x:Type vm:GalleryViewModel}}, Path=ItemTapped}"
+                                            CommandParameter="{Binding .}"
+                                            NumberOfTapsRequired="1" />
                                     </StackLayout.GestureRecognizers>
-                                 </StackLayout>
+                                </StackLayout>
                             </Frame>
                         </StackLayout>
                     </DataTemplate>
