@@ -13,7 +13,8 @@ namespace ProjectMarta.Services
         public SpeechService()
         {
             var config = SpeechConfig.FromSubscription(Constants.CognitiveServicesApiKey, Constants.CognitiveServicesRegion);
-            var sourceLanguageConfig = SourceLanguageConfig.FromLanguage("it-IT");
+            //var sourceLanguageConfig = SourceLanguageConfig.FromLanguage("it-IT");
+            var sourceLanguageConfig = SourceLanguageConfig.FromLanguage("en-GB");
             Synthesizer = new SpeechSynthesizer(config);
             //Synthesizer = new SpeechSynthesizer(config,
             //    AutoDetectSourceLanguageConfig.FromSourceLanguageConfigs(new[] { sourceLanguageConfig }),
