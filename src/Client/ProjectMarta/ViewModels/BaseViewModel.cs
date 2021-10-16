@@ -10,9 +10,9 @@ namespace ProjectMarta.ViewModels
 {
     public class BaseViewModel : INotifyPropertyChanged
     {
-        public IDataStore<Item> DataStore => DependencyService.Get<IDataStore<Item>>();
         public IDataStore<GalleryItem> GalleryItemDataStore => DependencyService.Get<IDataStore<GalleryItem>>();
         public IMicrophoneService MicrophoneService = DependencyService.Resolve<IMicrophoneService>();
+        public ISpeechService SpeechService = DependencyService.Resolve<ISpeechService>();
 
         bool isBusy = false;
         public bool IsBusy
