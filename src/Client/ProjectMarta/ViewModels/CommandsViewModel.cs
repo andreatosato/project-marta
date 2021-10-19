@@ -65,11 +65,12 @@ namespace ProjectMarta.ViewModels
 
         public CommandsViewModel()
         {
-            Title = "Commands";
+            Title = Resx.AppResources.Tab2Name;
+
             RecordingCommand = new Command(async () => await StartRecordingAsync());
-            RecordingButtonText = "Premi e parla ;-)";
+            RecordingButtonText = Resx.AppResources.CommandInitialText;
             RecordingButtonColor = Color.Blue;
-            TranscriptText = "Dimmi qualcosa!";
+            TranscriptText = Resx.AppResources.CommandInitialTranscriptText;
 
             SpeachRecognizer = SpeechService.GetRecognizer();
             SpeachRecognizer.Recognized += async (obj, args) =>
@@ -96,14 +97,13 @@ namespace ProjectMarta.ViewModels
 
             if (!isMicEnabled)
             {
-                UpdateTranscription("Please grant access to the microphone!");
+                UpdateTranscription(Resx.AppResources.CommandPhoneConsent);
                 return;
             }
 
             LoadingValue = true;
             CommandFound = false;
             RecordingButtonColor = Color.Green;
-            RecordingButtonText = "Ora puoi parlare!";
             // initialize speech recognizer 
 
             if (!isTranscribing)
@@ -112,7 +112,7 @@ namespace ProjectMarta.ViewModels
                 Device.BeginInvokeOnMainThread(() =>
                 {
                     RecordingButtonColor = Color.Red;
-                    RecordingButtonText = "Stop";
+                    RecordingButtonText = Resx.AppResources.CommandButtonStop;
                     LoadingValue = true;
                     CommandFound = false;
                     TranscriptText = string.Empty;
@@ -125,7 +125,7 @@ namespace ProjectMarta.ViewModels
                 Device.BeginInvokeOnMainThread(() =>
                 {
                     RecordingButtonColor = Color.Green;
-                    RecordingButtonText = "Start";
+                    RecordingButtonText = Resx.AppResources.CommandButtonStart;
                     LoadingValue = false;
                 });
             }

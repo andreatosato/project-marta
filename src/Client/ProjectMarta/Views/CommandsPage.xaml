@@ -3,7 +3,9 @@
     x:Class="ProjectMarta.Views.CommandsPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:vm="clr-namespace:ProjectMarta.ViewModels">
+    xmlns:vm="clr-namespace:ProjectMarta.ViewModels"
+    xmlns:resource="clr-namespace:ProjectMarta.Resx"
+    Title="{Binding Title}">
 
     <ContentPage.BindingContext>
         <vm:CommandsViewModel />
@@ -17,9 +19,6 @@
                         <Label Text="{Binding TranscriptText}" TextColor="Black"/>
                     </ScrollView>
                 </Frame>
-                <!--
-                <ActivityIndicator IsRunning="{Binding LoadingValue}" IsVisible="{Binding LoadingValue}" />
-                -->
                 <Button
                     BackgroundColor="{Binding RecordingButtonColor}"
                     Command="{Binding RecordingCommand}"
@@ -31,7 +30,7 @@
                     <Label.FormattedText>
                         <FormattedString>
                             <FormattedString.Spans>
-                                <Span Text="Ho capito: "/>
+                                <Span Text="{x:Static resource:AppResources.CommandTextFound}"/>
                                 <Span Text="{Binding RecognizedText}"/>
                             </FormattedString.Spans>
                         </FormattedString>

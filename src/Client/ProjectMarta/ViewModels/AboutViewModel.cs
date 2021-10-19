@@ -9,7 +9,7 @@ namespace ProjectMarta.ViewModels
     {
         public AboutViewModel()
         {
-            Title = "About";
+            Title = Resx.AppResources.Tab3Name;
             OpenWebCommand = new Command(async () => await Browser.OpenAsync("https://aka.ms/project-marta"));
         }
 

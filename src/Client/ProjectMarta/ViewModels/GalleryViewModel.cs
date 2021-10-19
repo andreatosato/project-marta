@@ -17,9 +17,8 @@ namespace ProjectMarta.ViewModels
 
         public GalleryViewModel()
         {
-            Title = "Gallery";
+            Title = Resx.AppResources.Tab1Name;
             GalleryItems = new ObservableCollection<GalleryItem>();
-
             ItemTapped = new Command<GalleryItem>(OnItemSelected);
         }
 

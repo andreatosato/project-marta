@@ -1,5 +1,7 @@
 ﻿using ProjectMarta.Models;
 using ProjectMarta.Services;
+using System.Globalization;
+using System.Threading;
 using Xamarin.Forms;
 
 namespace ProjectMarta
@@ -14,6 +16,9 @@ namespace ProjectMarta
             DependencyService.Register<IDataStore<GalleryItem>, GalleryDataStore>();
             DependencyService.Register<IMicrophoneService, MicrophoneService>();
             DependencyService.Register<ISpeechService, SpeechService>();
+
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.InstalledUICulture;
+
             MainPage = new AppShell();
         }
 
